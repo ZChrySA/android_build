@@ -50,6 +50,10 @@ ifneq (,$(findstring $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include,$(LOCAL_
   LOCAL_CFLAGS := $(patsubst -isystem $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include,,$(LOCAL_CFLAGS))
   LOCAL_HEADER_LIBRARIES += generated_kernel_headers
 endif
+ifneq (,$(findstring $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/audio/include,$(LOCAL_C_INCLUDES)))
+  LOCAL_C_INCLUDES := $(patsubst $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/audio/include,,$(LOCAL_C_INCLUDES))
+  LOCAL_HEADER_LIBRARIES += generated_kernel_headers
+endif
 
 # Remove KERNEL_OBJ/usr from any LOCAL_ADDITIONAL_DEPENDENCIES, we will
 # just include generated_kernel_headers which already has the proper
